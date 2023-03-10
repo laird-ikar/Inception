@@ -3,9 +3,7 @@ services:
   #nginx
   nginx:
     container_name: nginx
-    build:
-      context: ./nginx
-      dockerfile: nginx.dockerfile
+    build: ./nginx
     ports:
       - "443:443"
     restart: always
