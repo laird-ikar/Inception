@@ -7,7 +7,8 @@ services:
       context: ./nginx
       dockerfile: nginx.dockerfile
     ports:
-      - 443:443
+      - "443:443"
+    restart: always
     # networks:
     #   - docker-network
 
