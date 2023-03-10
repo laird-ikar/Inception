@@ -1,5 +1,8 @@
 FROM alpine:3.16
 
+# Install tar
+RUN apk update && apk add --no-cache tar
+
 # Download and install Wordpress
 RUN wget http://wordpress.org/latest.tar.gz
 RUN tar latest.tar.gz
