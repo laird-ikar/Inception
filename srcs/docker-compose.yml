@@ -24,9 +24,9 @@ services:
 
   # wordpress
 
-volumes:
-  # db_data
+# volumes:
+#   # db_data
   # wordpress_data
 
-networks:
-  # docker-network
+# networks:
+#   # docker-network
