@@ -1,0 +1,32 @@
+services:
+
+  #nginx
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: nginx.dockerfile
+    ports:
+      - 443:443
+    # networks:
+    #   - docker-network
+
+  # mariaDB
+  # mariadb:
+  #   container_name: mariadb
+  #   build:
+  #     context: ./mariadb
+  #     dockerfile: mariadb.dockerfile
+  #   networks:
+  #     - docker-network
+  #   volumes:
+  #     - db_data:/var/lib/mysql
+
+  # wordpress
+
+volumes:
+  # db_data
+  # wordpress_data
+
+networks:
+  # docker-network
