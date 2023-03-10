@@ -3,7 +3,7 @@ NAME	=	inceptions
 all: $(NAME)
 
 $(NAME):
-	docker-compose up -d --build -f srcs/docker-compose.yml
+	docker-compose -f srcs/docker-compose.yml up -d --build
 
 clean:
 	docker-compose down --project-directory srcs
