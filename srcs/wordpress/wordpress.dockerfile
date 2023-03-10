@@ -9,8 +9,8 @@ RUN tar -xf latest.tar.gz
 RUN rm latest.tar.gz
 
 # Install php-fpm
-RUN apk update && apk add -U --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing php7 php7-fpm php7-opcache php7-gd			\
-	php7-mysqli php7-zlib php7-curl php7-mbstring php7-json php7-session
+RUN apk update && apk add --no-cache php8 php8-fpm php8-opcache php8-gd			\
+	php8-mysqli php8-zlib php8-curl php8-mbstring php8-json php8-session
 
 # Copy the php-fpm configuration file
 COPY ./wp-config.php /wordpress/wp-config.php
