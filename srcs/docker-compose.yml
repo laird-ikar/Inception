@@ -10,22 +10,22 @@ services:
     ports:
       - "443:443"
     restart: always
-    # depends_on:
-    #   - wordpress
+    depends_on:
+      - wordpress
     networks:
       - docker-network
 
   # wordpress
-  # wordpress:
-  #   container_name: wordpress
-  #   build:
-  #     context: ./wordpress
-  #     dockerfile: wordpress.dockerfile
-  #   restart: always
-  #   networks:
-  #     - docker-network
-  #   volumes:
-  #     - wordpress_data:/var/www/html
+  wordpress:
+    container_name: wordpress
+    build:
+      context: ./wordpress
+      dockerfile: wordpress.dockerfile
+    restart: always
+    networks:
+      - docker-network
+    volumes:
+      - wordpress_data:/var/www/html
 
     # depends_on:
     #   - mariadb
@@ -49,9 +49,9 @@ services:
   #   volumes:
   #     - db_data:/var/lib/mysql
 
-# volumes:
+volumes:
   # db_data
-  # wordpress_data:
+  wordpress_data:
 
 networks:
   docker-network:
