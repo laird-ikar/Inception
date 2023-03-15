@@ -28,4 +28,4 @@ COPY ./nginx.conf /etc/nginx/nginx.conf
 EXPOSE 443
 
 # Launch Nginx
-CMD ["nginx", "-c" , "/etc/nginx/nginx.conf"]
+CMD ["nginx", "-c" , "/etc/nginx/nginx.conf", "-g", "daemon off;"]
