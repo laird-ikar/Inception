@@ -6,7 +6,7 @@ $(NAME):
 	docker-compose -f srcs/docker-compose.yml up -d --build
 
 clean:
-	docker-compose down --project-directory srcs
+	docker-compose -f srcs/docker-compose.yml down
 
 fclean: clean
 	printf "y\n" | docker system prune -a
