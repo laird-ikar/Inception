@@ -15,5 +15,7 @@ RUN apk update && apk add --no-cache php8 php8-fpm php8-opcache php8-gd			\
 # Copy the php-fpm configuration file
 COPY ./wp-config.php /wordpress/wp-config.php
 
+EXPOSE 9000
+
 # Start Wordpress
 CMD ["php-fpm8", "-F"]
