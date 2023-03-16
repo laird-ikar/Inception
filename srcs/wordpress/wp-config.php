@@ -83,8 +83,8 @@ define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 /* Set the site url */
-define( 'WP_SITEURL', 'https://bguyot.42.fr' );
-define( 'WP_HOME', 'https://bguyot.42.fr/' );
+define( 'WP_SITEURL', 'https://localhost:9000' );
+define( 'WP_HOME', 'https://localhost:9000' );
 
 
 /* That's all, stop editing! Happy publishing. */
