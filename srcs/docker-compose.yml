@@ -26,6 +26,8 @@ services:
       - docker-network
     volumes:
       - wordpress_data:/var/www/html
+    ports:
+      - "9000:9000"
 
     # depends_on:
     #   - mariadb
