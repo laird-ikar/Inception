@@ -20,7 +20,7 @@ RUN rm latest.tar.gz
 COPY ./wp-config.php /var/www/html/wp-config.php
 
 # Copy the index to /var/www/html
-COPY ./index.html /var/www/html/index.html
+COPY ./index.php /var/www/html/index.php
 
 EXPOSE 9000
 
