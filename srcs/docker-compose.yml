@@ -10,6 +10,8 @@ services:
     ports:
       - "443:443"
     restart: always
+    # volumes:
+    #   - "~/Desktop/inception"
     depends_on:
       - wordpress
     networks:
@@ -25,7 +27,7 @@ services:
     networks:
       - docker-network
     volumes:
-      - wordpress_data:/var/www/html
+    - "~/Desktop/inception/wordpress:/var/www/html"
     ports:
       - "9000:9000"
 
@@ -51,9 +53,9 @@ services:
   #   volumes:
   #     - db_data:/var/lib/mysql
 
-volumes:
-  # db_data
-  wordpress_data:
+# volumes:
+#   # db_data
+#   wordpress_data:
 
 networks:
   docker-network:

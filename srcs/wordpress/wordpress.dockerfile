@@ -7,6 +7,8 @@ RUN apk update && apk add --no-cache tar
 RUN apk update && apk add --no-cache php8 php8-fpm php8-opcache php8-gd			\
 	php8-mysqli php8-zlib php8-curl php8-mbstring php8-json php8-session
 
+RUN	adduser -S nginx &&	addgroup -S nginx
+
 WORKDIR /var/www/html
 
 # Download and install Wordpress
