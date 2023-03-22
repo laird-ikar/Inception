@@ -14,7 +14,7 @@ RUN apt-get -y update && \
 	mariadb-client \
 	wget
 
-RUN	adduser -S nginx &&	addgroup -S nginx
+RUN	adduser --system nginx &&	addgroup --system nginx
 
 WORKDIR /var/www/html
 
