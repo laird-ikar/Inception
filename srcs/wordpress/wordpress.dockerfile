@@ -1,8 +1,5 @@
 FROM debian:buster
 
-# Install tar
-RUN apk update && apk add --no-cache tar
-
 # Install php-fpm
 
 RUN apt-get -y update && \
