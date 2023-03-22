@@ -3,13 +3,13 @@ NAME	=	inceptions
 all: $(NAME)
 
 $(NAME):
-	docker-compose -f srcs/docker-compose.yml up -d --build
+	docker compose -f srcs/docker-compose.yml up -d --build
 
 test:
-	docker-compose -f srcs/docker-compose.yml up --build
+	docker compose -f srcs/docker-compose.yml up --build
 
 clean:
-	docker-compose -f srcs/docker-compose.yml down --remove-orphans
+	docker compose -f srcs/docker-compose.yml down --remove-orphans
 
 fclean: clean
 	docker system prune
