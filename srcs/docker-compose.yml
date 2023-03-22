@@ -16,6 +16,8 @@ services:
       - wordpress
     networks:
       - docker-network
+    volumes:
+    - "~/Desktop/inception/wordpress:/var/www/html"
 
   # wordpress
   wordpress:
