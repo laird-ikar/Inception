@@ -5,12 +5,12 @@ FROM debian:buster
 RUN apt-get -y update && \
 	apt-get -y upgrade && \
 	apt-get install -y \
-	php7.3 \
-	php7.3-mysql \
-	php7.3-fpm \
-	php7.3-gd \
-	php7.3-mbstring \
-	php7.3-zip \
+	php7 \
+	php7-mysql \
+	php7-fpm \
+	php7-gd \
+	php7-mbstring \
+	php7-zip \
 	mariadb-client \
 	wget
 
@@ -32,4 +32,4 @@ COPY ./index.php /var/www/html/index.php
 EXPOSE 9000
 
 # Start Wordpress
-CMD ["php-fpm7.3", "-F"]
+CMD ["php-fpm7", "-F"]
