@@ -32,4 +32,4 @@ COPY ./index.php /var/www/html/index.php
 EXPOSE 9000
 
 # Start Wordpress
-CMD ["php7.3-fpm", "-F"]
+CMD ["php-fpm7.3", "-F"]
