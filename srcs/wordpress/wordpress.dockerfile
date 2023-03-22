@@ -26,8 +26,8 @@ RUN rm latest.tar.gz
 # Copy the php-fpm configuration file
 COPY ./wp-config.php /var/www/html/wp-config.php
 
-# Copy the index to /var/www/html
-COPY ./index.php /var/www/html/index.php
+# # Copy the index to /var/www/html
+# COPY ./index.php /var/www/html/index.php
 
 EXPOSE 9000
 
