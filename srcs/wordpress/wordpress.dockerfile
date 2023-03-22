@@ -1,11 +1,21 @@
-FROM alpine:3.16
+FROM debian:buster
 
 # Install tar
 RUN apk update && apk add --no-cache tar
 
 # Install php-fpm
-RUN apk update && apk add --no-cache php8 php8-fpm php8-opcache php8-gd			\
-	php8-mysqli php8-zlib php8-curl php8-mbstring php8-json php8-session
+
+RUN apt-get -y update && \
+	apt-get -y upgrade && \
+	apt-get install -y \
+	php7.3 \
+	php7.3-mysql \
+	php7.3-fpm \
+	php7.3-gd \
+	php7.3-mbstring \
+	php7.3-zip \
+	mariadb-client \
+	wget
 
 RUN	adduser -S nginx &&	addgroup -S nginx
 
@@ -25,4 +35,4 @@ COPY ./index.php /var/www/html/index.php
 EXPOSE 9000
 
 # Start Wordpress
-CMD ["php-fpm8", "-F"]
+CMD ["php-fpm7", "-F"]

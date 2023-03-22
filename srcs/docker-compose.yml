@@ -10,8 +10,6 @@ services:
     ports:
       - "443:443"
     restart: always
-    # volumes:
-    #   - "~/Desktop/inception"
     depends_on:
       - wordpress
     networks:
