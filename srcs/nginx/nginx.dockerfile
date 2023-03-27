@@ -19,7 +19,7 @@ RUN openssl																		\
 	#Where the certificate will be stored
 	-out /etc/ssl/nginx.crt													 	\
 	# Certificate subject
-	-subj "/C=FR/ST=Alsace/L=Mulhouse/O=Ikar, Inc./CN=ikar.42.fr"
+	-subj "/C=FR/ST=Alsace/L=Mulhouse/O=Ikar, Inc./CN=bguyot.42.fr"
 
 # Copy the Nginx configuration file
 COPY ./nginx.conf /etc/nginx/nginx.conf
