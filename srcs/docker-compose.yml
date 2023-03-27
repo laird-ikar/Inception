@@ -1,64 +1,50 @@
 version: '3.7'
 services:
+    #nginx
+    nginx:
+        container_name: nginx
+        build:
+            context: ./nginx
+            dockerfile: nginx.dockerfile
+        ports:
+            - 443:443
+        restart: always
+        networks:
+            - docker-network
+        volumes:
+            - wordpress:/var/www/html
+        depends_on:
+            - wordpress
 
-  #nginx
-  nginx:
-    container_name: nginx
-    build:
-      context: ./nginx
-      dockerfile: nginx.dockerfile
-    ports:
-      - 443:443
-    restart: always
-    # depends_on:
-    #   - wordpress
-    networks:
-      - docker-network
-    volumes:
-    - wordpress:/var/www/html
-
-  # wordpress
-  wordpress:
-    container_name: wordpress
-    build:
-      context: ./wordpress
-      dockerfile: wordpress.dockerfile
-    restart: always
-    networks:
-      - docker-network
-    volumes:
-    - wordpress:/var/www/html
-    ports:
-      - 9000:9000
-
-    # depends_on:
-    #   - mariadb
-    #   - redis
-    # ports:
-    #  - "??:??"
-    # environment:
-    #   WORDPRESS_DB_HOST: mariadb
-    #   WORDPRESS_DB_USER: root
-    #   WORDPRESS_DB_PASSWORD: root
-    #   WORDPRESS_DB_NAME: wordpress
+    # wordpress
+    wordpress:
+        container_name: wordpress
+        build:
+            context: ./wordpress
+            dockerfile: wordpress.dockerfile
+        restart: always
+        networks:
+            - docker-network
+        volumes:
+            - wordpress:/var/www/html
+        depends_on:
+            - mariadb
 
     # mariaDB
-  # mariadb:
-  #   container_name: mariadb
-  #   build:
-  #     context: ./mariadb
-  #     dockerfile: mariadb.dockerfile
-  #   networks:
-  #     - docker-network
-  #   volumes:
-  #     - db_data:/var/lib/mysql
-
-# volumes:
-#   # db_data
-#   wordpress_data:
+    mariadb:
+        container_name: mariadb
+        build:
+            context: ./mariadb
+            dockerfile: mariadb.dockerfile
+        restart: always
+        networks:
+            - docker-network
+        volumes:
+            - db_data:/var/lib/mysql
 
 networks:
-  docker-network:
+    docker-network:
 
 volumes:
-  wordpress:
+    wordpress:
+    db:
