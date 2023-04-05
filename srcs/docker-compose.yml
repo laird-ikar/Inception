@@ -36,8 +36,6 @@ services:
         build:
             context: ./mariadb
             dockerfile: mariadb.dockerfile
-        env_file:
-        - .env
         volumes:
         - db:/var/lib/mysql
         networks:
