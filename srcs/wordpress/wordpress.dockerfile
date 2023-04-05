@@ -10,7 +10,7 @@ EXPOSE 9000
 
 COPY ./www.conf /etc/php/7.3/fpm/pool.d
 COPY ./wp-config.php /var/www/
-COPY ./wordpress.sql /var/www/
+COPY ./wordpress.sh /var/www/
 
 ENTRYPOINT [ "sh", "/var/www/entrypoint.sh" ]
 
