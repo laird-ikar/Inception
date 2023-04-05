@@ -9,6 +9,6 @@ RUN mkdir -p /run/php/
 EXPOSE 9000
 
 COPY ./www.conf /etc/php/7.3/fpm/pool.d
-COPY ./wordpress.conf /var/www/
+COPY ./wp-config.php /var/www/
 
 CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
