@@ -10,8 +10,8 @@ EXPOSE 9000
 
 COPY ./www.conf /etc/php/7.3/fpm/pool.d
 COPY ./wp-config.php /var/www/
-COPY ./wordpress.sh /var/www/
+COPY ./start.sh /var/www/
 
-ENTRYPOINT [ "sh", "/var/www/entrypoint.sh" ]
+ENTRYPOINT [ "sh", "/var/www/start.sh" ]
 
 CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
