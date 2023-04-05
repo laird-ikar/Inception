@@ -40,7 +40,7 @@ services:
         - db:/var/lib/mysql
         networks:
         - docker-network
-        restart: always
+        restart: no
 
 networks:
     docker-network:
