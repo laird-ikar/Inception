@@ -1,14 +1,13 @@
-FROM alpine:3.16
+FROM debian:buster
 
-#install mariadb
-RUN apk update && apk add mariadb mariadb-client
+RUN apt-get update
+RUN apt-get install -y mariadb-server
 
-#copy the configuration file
-COPY ./mariadb.conf /etc/mysql/my.cnf
-
-# Expose the port
 EXPOSE 3306
 
-#launch mariadb
-CMD [ "mysqld", "--user=root" ]
+COPY ./conf/mariadb.cnf /etc/mysql/mariadb.conf.d/mariadb.cnf
+COPY ./init_db.sql /var/www/initial_db.sql
 
+RUN service mysql start && mysql < /var/www/initial_db.sql && rm -f /var/www/initial_db.sql;
+
+CMD ["mysqld"]
