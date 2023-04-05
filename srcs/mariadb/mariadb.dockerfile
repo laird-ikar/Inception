@@ -10,5 +10,5 @@ COPY ./mariadb.conf /etc/mysql/my.cnf
 EXPOSE 3306
 
 #launch mariadb
-CMD [ "mysqld" ]
+CMD [ "mysqld", "--user=root" ]
 
