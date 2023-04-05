@@ -23,7 +23,7 @@ services:
             context: ./wordpress
             dockerfile: wordpress.dockerfile
         restart: always
-        env: 
+        environment: 
             - .env
         networks:
             - docker-network
@@ -43,7 +43,7 @@ services:
         networks:
         - docker-network
         restart: always
-        env:
+        environment:
             - .env
 
 networks:
