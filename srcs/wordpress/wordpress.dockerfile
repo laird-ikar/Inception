@@ -1,28 +1,10 @@
-FROM alpine:3.16
+FROM debian:buster
 
-# Install tar
-RUN apk update && apk add --no-cache tar
-
-# Install php-fpm
-RUN apk update && apk add --no-cache php8 php8-fpm php8-opcache php8-gd			\
-	php8-mysqli php8-zlib php8-curl php8-mbstring php8-json php8-session
-
-RUN	adduser -S nginx &&	addgroup -S nginx
-
-WORKDIR /var/www/html
-
-# Download and install Wordpress
-RUN wget http://wordpress.org/latest.tar.gz
-RUN tar -xf latest.tar.gz
-RUN rm latest.tar.gz
-
-# Copy the php-fpm configuration file
-COPY ./wp-config.php /var/www/html/wp-config.php
-
-# Copy the index to /var/www/html
-# COPY ./index.php /var/www/html/index.php
+RUN apt-get update
+RUN apt-get -y install php7.3 php-mysqli php-fpm wget sendmail
 
 EXPOSE 9000
 
-# Start Wordpress
-CMD ["php-fpm8", "-F"]
+COPY ./www.conf /etc/php/7.3/fpm/pool.d
+
+CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
