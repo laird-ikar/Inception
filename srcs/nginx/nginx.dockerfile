@@ -1,7 +1,7 @@
 FROM debian:buster
 
 # Install Nginx and OpenSSL
-RUN apk update && apk add --no-cache nginx openssl 
+RUN apt-get update && apt-get add --no-cache nginx openssl 
 
 # Nginx SSL configuration
 RUN mkdir -p /etc/ssl
