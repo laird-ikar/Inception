@@ -14,6 +14,6 @@ EXPOSE 9000
 COPY ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY ./start_wordpress.sh /usr/local/bin/
 
-ENTRYPOINT [ "start_wordpress.sh" ]
+ENTRYPOINT [ "sh", " /usr/local/bin/start_wordpress.sh" ]
 
 CMD ["php-fpm7.3", "-F"]
