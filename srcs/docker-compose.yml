@@ -1,54 +1,58 @@
 version: "3.9"
+
 services:
-    #nginx
-    nginx:
-        container_name: nginx
-        build:
-            context: ./nginx
-            dockerfile: nginx.dockerfile
-        ports:
-            - 443:443
-        restart: always
-        networks:
-            - docker-network
-        volumes:
-            - wordpress:/var/www/html
-        depends_on:
-            - wordpress
-
-    # wordpress
-    wordpress:
-        container_name: wordpress
-        build:
-            context: ./wordpress
-            dockerfile: wordpress.dockerfile
-        restart: always
-        environment: 
-            - .env
-        networks:
-            - docker-network
-        volumes:
-            - wordpress:/var/www/html
-        depends_on:
-            - mariadb
-
-    # mariaDB
     mariadb:
-        container_name: mariadb
         build:
             context: ./mariadb
             dockerfile: mariadb.dockerfile
+        container_name: mariadb
+        env_file: .env
         volumes:
-        - db:/var/lib/mysql
+            - mariadb:/var/lib/mysql
         networks:
-        - docker-network
-        restart: always
-        environment:
-            - .env
+            - inception
+        restart: on-failure
+
+    wordpress:
+        build:
+            context: ./wordpress
+            dockerfile: wordpress.dockerfile
+        container_name: wordpress
+        depends_on:
+            - mariadb
+        env_file: .env
+        volumes:
+            - wordpress:/var/www/html
+        restart: on-failure
+        networks:
+            - inception
+
+    nginx:
+        build:
+            context: ./nginx
+            dockerfile: nginx.dockerfile
+        container_name: nginx
+        depends_on:
+            - wordpress
+        env_file: .env
+        volumes:
+            - wordpress:/var/www/html
+        ports:
+            - "443:443"
+        restart: on-failure
+        networks:
+            - inception
 
 networks:
     docker-network:
+        driver: bridge
 
 volumes:
     wordpress:
+        type: none
+        device: /var/www/html
+        o: bind
     db:
+        type: none
+        device: /var/lib/mysql
+        o: bind

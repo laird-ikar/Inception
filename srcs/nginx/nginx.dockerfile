@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM debian:buster
 
 # Install Nginx and OpenSSL
 RUN apk update && apk add --no-cache nginx openssl 
@@ -22,10 +22,10 @@ RUN openssl																		\
 	-subj "/C=FR/ST=Alsace/L=Mulhouse/O=Ikar, Inc./CN=bguyot.42.fr"
 
 # Copy the Nginx configuration file
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/conf.d
 
 # Expose HTTPS
 EXPOSE 443
 
 # Launch Nginx
-CMD ["nginx", "-c" , "/etc/nginx/nginx.conf", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off";]

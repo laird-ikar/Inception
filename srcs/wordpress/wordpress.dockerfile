@@ -1,17 +1,20 @@
 FROM debian:buster
 
 RUN apt-get update
-# Install PHP and other dependencies
 RUN apt-get -y install php7.3 php-mysqli php-fpm wget sendmail
 
-RUN mkdir -p /run/php/
+RUN	mkdir -p /var/www/html ; mkdir -p /run/php
+
+RUN	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp
 
 EXPOSE 9000
 
-COPY ./www.conf /etc/php/7.3/fpm/pool.d
+COPY ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY ./wp-config.php /var/www/
-COPY ./start.sh /var/www/
+COPY ./start_wordpress.sh /usr/local/bin/
 
-ENTRYPOINT [ "sh", "/var/www/start.sh" ]
+ENTRYPOINT [ "start_wordpress.sh" ]
 
-CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
+CMD ["php-fpm7.3", "-F"]
