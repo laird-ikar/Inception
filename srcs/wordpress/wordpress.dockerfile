@@ -12,7 +12,6 @@ RUN	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 EXPOSE 9000
 
 COPY ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
-COPY ./wp-config.php /var/www/
 COPY ./start_wordpress.sh /usr/local/bin/
 
 ENTRYPOINT [ "start_wordpress.sh" ]
