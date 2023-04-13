@@ -6,7 +6,8 @@ services:
             context: ./mariadb
             dockerfile: mariadb.dockerfile
         container_name: mariadb
-        env_file: .env
+        env_file:
+            - .env
         volumes:
             - db:/var/lib/mysql
         networks:
@@ -20,7 +21,8 @@ services:
         container_name: wordpress
         depends_on:
             - mariadb
-        env_file: .env
+        env_file:
+            - .env
         volumes:
             - wordpress:/var/www/html
         restart: on-failure
@@ -34,7 +36,8 @@ services:
         container_name: nginx
         depends_on:
             - wordpress
-        env_file: .env
+        env_file:
+            - .env
         volumes:
             - wordpress:/var/www/html
         ports:
