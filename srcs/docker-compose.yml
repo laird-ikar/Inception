@@ -44,7 +44,7 @@ services:
             - inception
 
 networks:
-    docker-network:
+    inception:
         driver: bridge
 
 volumes:
