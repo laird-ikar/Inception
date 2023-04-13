@@ -31,7 +31,7 @@ COPY ./start_wordpress.sh /usr/local/bin/setup_wordpress.sh
 # Serves only as documentation here
 EXPOSE 9000
 
-ENTRYPOINT ["setup_wordpress.sh"]
+ENTRYPOINT ["sh" "/usr/local/bin/setup_wordpress.sh"]
 
 # Command launched at the end of the setup
 CMD ["php-fpm7.3", "-F"]
