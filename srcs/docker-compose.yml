@@ -49,10 +49,14 @@ networks:
 
 volumes:
     wordpress:
-        type: none
-        device: /var/www/html
-        o: bind
+        driver: local
+        driver_opts:
+            type: none
+            device: /var/www/html
+            o: bind
     db:
-        type: none
-        device: /var/lib/mysql
-        o: bind
+        driver: local
+        driver_opts:
+            type: none
+            device: /var/lib/mysql
+            o: bind

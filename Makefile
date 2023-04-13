@@ -1,19 +1,37 @@
-NAME	=	inceptions
+DOCKER_COMPOSE_FILE		= srcs/docker-compose.yml
+DATABASE_VOLUME			= /var/lib/mysql
+WORDPRESS_VOLUME		= /var/www/html
+DATABASE_DOCKER_VOLUME	= srcs_db
+WORDPRESS_DOCKER_VOLUME	= srcs_wordpress
 
-all: $(NAME)
+MKDIR					= mkdir -p
+RM						= rm -rf
 
-$(NAME):
-	docker compose -f srcs/docker-compose.yml up -d --build --force-recreate
+all:	up
 
-test:
-	docker compose -f srcs/docker-compose.yml up --build
+up:
+		sudo $(MKDIR) $(DATABASE_VOLUME)
+		sudo $(MKDIR) $(WORDPRESS_VOLUME)
+		docker-compose -f $(DOCKER_COMPOSE_FILE) up --build -d
 
-clean:
-	docker compose -f srcs/docker-compose.yml down --remove-orphans
+down:
+		docker-compose -f $(DOCKER_COMPOSE_FILE) down
 
-fclean: clean
-	docker system prune
+stop:
+		docker-compose -f $(DOCKER_COMPOSE_FILE) stop
 
-re: clean all
+logs:
+		docker-compose -f $(DOCKER_COMPOSE_FILE) logs
 
-.PHONY : all clean fclean re
+clean:		down
+		docker container prune --force
+
+fclean:		clean
+		sudo $(RM) $(DATABASE_VOLUME)
+		sudo $(RM) $(WORDPRESS_VOLUME)
+		docker system prune --all --force
+		docker volume rm $(DATABASE_DOCKER_VOLUME) $(WORDPRESS_DOCKER_VOLUME)
+
+re:			fclean all
+
+.PHONY:		all volume up down clean fclean re
