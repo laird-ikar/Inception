@@ -13,6 +13,6 @@ EXPOSE 3306
 COPY ./mariadb.conf /etc/mysql/my.cnf
 COPY ./start_mariadb.sh /usr/local/bin/
 
-ENTRYPOINT [ "start_mariadb.sh" ]
+ENTRYPOINT [ "sh", "/usr/local/bin/start_mariadb.sh" ]
 
 CMD ["/usr/bin/mysqld_safe", "--datadir=/var/lib/mysql"]
