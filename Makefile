@@ -12,16 +12,16 @@ all:	up
 up:
 		sudo $(MKDIR) $(DATABASE_VOLUME)
 		sudo $(MKDIR) $(WORDPRESS_VOLUME)
-		docker-compose -f $(DOCKER_COMPOSE_FILE) up --build -d
+		docker compose -f $(DOCKER_COMPOSE_FILE) up --build -d
 
 down:
-		docker-compose -f $(DOCKER_COMPOSE_FILE) down
+		docker compose -f $(DOCKER_COMPOSE_FILE) down
 
 stop:
-		docker-compose -f $(DOCKER_COMPOSE_FILE) stop
+		docker compose -f $(DOCKER_COMPOSE_FILE) stop
 
 logs:
-		docker-compose -f $(DOCKER_COMPOSE_FILE) logs
+		docker compose -f $(DOCKER_COMPOSE_FILE) logs
 
 clean:		down
 		docker container prune --force
