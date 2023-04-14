@@ -3,8 +3,10 @@ FROM debian:buster
 # Install Nginx and OpenSSL
 RUN apt-get update && apt-get install -y nginx openssl
 
+RUN mkdir -p /etc/ssl ; mkdir -p /var/www/html
+RUN chown -R www-data:www-data /var/www/html
+
 # Nginx SSL configuration
-RUN mkdir -p /etc/ssl
 RUN openssl																		\ 
 	# Create a self-signed certificate
 	req -x509							                                        \ 

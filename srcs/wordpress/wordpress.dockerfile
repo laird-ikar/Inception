@@ -16,6 +16,7 @@ RUN	apt-get update && \
 
 # Creation of the folders to enable wordpress and php start 
 RUN	mkdir -p /var/www/html ; mkdir -p /run/php
+RUN chown -R www-data:www-data /var/www/html
 
 # Installation of WP-CLI = WordPress command line interface
 RUN	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
