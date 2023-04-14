@@ -4,7 +4,7 @@ FROM debian:buster
 RUN apt-get update && apt-get install -y nginx openssl
 
 RUN mkdir -p /etc/ssl ; mkdir -p /var/www/html
-RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html
 
 # Nginx SSL configuration
 RUN openssl																		\ 
