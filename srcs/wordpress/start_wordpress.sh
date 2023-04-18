@@ -41,7 +41,7 @@ if [ ! -f "$WP_CONFIG_FILE" ]; then
 	wp theme install "inspiro" --activate --allow-root
 
 	# We generate an article
-	wp post generate --count=1 --post_author="efrancon" --post_title="Welcome to my project !" --allow-root
+	wp post generate --count=1 --post_author="ikar" --post_title="I hated it so much, you cannot even grasp" --allow-root
 
 fi;
 
